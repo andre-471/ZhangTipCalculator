@@ -27,6 +27,7 @@ public class TipCalculator {
         double tipPerPerson = tipAmount / numPeople;
         double billPerPerson = costPerPerson + tipPerPerson;
 
+        // https://stackoverflow.com/questions/2538787/how-to-print-a-float-with-2-decimal-places-in-java
         System.out.println("Total bill before tip: " + String.format("%.2f", totalCost));
         System.out.println(tipPercent + "%");
         System.out.println(String.format("%.2f", tipAmount));
