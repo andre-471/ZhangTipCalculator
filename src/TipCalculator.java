@@ -10,9 +10,10 @@ public class TipCalculator {
 
         do {
             double totalCost = 0.0;
-
+            String[] foods = new String[];
             System.out.print("How many people are in your group: ");
             int numPeople = scan.nextInt();
+            scan.nextLine();
             System.out.print("What's the tip percentage? (0-100): ");
             int tipPercent = scan.nextInt();
             scan.nextLine();
