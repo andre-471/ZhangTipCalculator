@@ -3,7 +3,11 @@ public class TipCalculator {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        double[] totalEachMenu = new double[4];
+        int totalMenus = 1;
+        double totalMenusCost = 0.0;
+        double totalMenusTip = 0.0;
+        double totalMenusBill = 0.0;
+
         do {
             double totalCost = 0.0;
 
@@ -38,14 +42,18 @@ public class TipCalculator {
             System.out.println(String.format("%.2f", tipPerPerson));
             System.out.println(String.format("%.2f", billPerPerson));
 
-            totalEachMenu[0] += 1;
-            totalEachMenu[1] += totalCost;
-            totalEachMenu[2] += tipAmount;
-            totalEachMenu[3] += totalBill;
+            totalMenus += 1;
+            totalMenusCost += totalCost;
+            totalMenusTip += tipAmount;
+            totalMenusBill += totalBill;
 
             System.out.println("Y/N");
         } while ("Y".equalsIgnoreCase(scan.nextLine())); // repeat if user says (Y)es
-        System.out.println(totalEachMenu.toString());
+
+        System.out.println(totalMenus);
+        System.out.println(totalMenusCost);
+        System.out.println(totalMenusTip);
+        System.out.println(totalMenusBill);
 
         scan.close();
     }
