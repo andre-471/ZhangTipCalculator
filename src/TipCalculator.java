@@ -1,16 +1,17 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class TipCalculator {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
         int totalMenus = 1;
-        double totalMenusCost = 0.0;
-        double totalMenusTip = 0.0;
-        double totalMenusBill = 0.0;
+        double totalMenusCost = 0;
+        double totalMenusTip = 0;
+        double totalMenusBill = 0;
 
         do {
-            double totalCost = 0.0;
-            String[] foods = new String[];
+            double totalCost = 0;
+            Map<String, Integer> items = new HashMap<>();
             System.out.print("How many people are in your group: ");
             int numPeople = scan.nextInt();
             scan.nextLine();
@@ -18,12 +19,14 @@ public class TipCalculator {
             int tipPercent = scan.nextInt();
             scan.nextLine();
 
-            double aCost = 0.0;
+            double aCost = 0;
+            String aItem;
             while (aCost != -1) {
                 totalCost += aCost;
                 System.out.print("Enter a cost in dollars and cents (-1 to end): ");
                 aCost = scan.nextDouble();
                 scan.nextLine();
+                aItem = scan.nextLine();
             }
 
             // cost is cost of food w/o tip
