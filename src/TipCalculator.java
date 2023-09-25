@@ -21,12 +21,15 @@ public class TipCalculator {
 
             double aCost = 0;
             String aItem;
+            System.out.print("Enter a cost in dollars and cents (-1 to end): ");
+            aCost = scan.nextDouble();
             while (aCost != -1) {
-                totalCost += aCost;
                 System.out.print("Enter a cost in dollars and cents (-1 to end): ");
                 aCost = scan.nextDouble();
                 scan.nextLine();
                 aItem = scan.nextLine();
+                totalCost += aCost;
+
             }
 
             // cost is cost of food w/o tip
