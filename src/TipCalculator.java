@@ -29,13 +29,17 @@ public class TipCalculator {
             scan.nextLine();
 
             String aItem;
+            int numItem;
             while (aCost != -1) {
                 System.out.print("Enter the item: ");
                 aItem = scan.nextLine();
+                System.out.print("How many? ");
+                numItem = scan.nextInt();
+                scan.nextLine();
 
-                totalCost += aCost;
-                https://www.programiz.com/java-programming/library/hashmap/merge
-                items.merge(aItem, 1,  (oldVal, newval) -> newval + 1);
+                totalCost += aCost * numItem;
+                // https://docs.oracle.com/javase/8/docs/api/java/util/Map.html#merge-K-V-java.util.function.BiFunction-
+                items.merge(aItem, numItem, Integer::sum);
 
                 System.out.print("Enter a cost in dollars and cents (-1 to end): ");
                 aCost = scan.nextDouble();
@@ -60,29 +64,30 @@ public class TipCalculator {
             System.out.println("Tip per person: $" + String.format("%.2f", tipPerPerson));
             System.out.println("Total cost per person: $" + String.format("%.2f", billPerPerson));
 
+            System.out.println("==========================================");
+            System.out.println("Items ordered: ");
+            // https://stackoverflow.com/questions/43015098/how-to-iterate-through-a-map-in-java
+            // I mean you didn't say it had to based on input order
+            for (Map.Entry<String, Integer> pair: items.entrySet()) {
+                System.out.println(pair.getKey() + " x" + pair.getValue());
+                totalItems.merge(pair.getKey(), pair.getValue(), Integer::sum);
+            }
+
             totalMenus += 1;
             totalMenusCost += totalCost;
             totalMenusTip += tipAmount;
             totalMenusBill += totalBill;
 
             System.out.println("==========================================");
-            System.out.println("Items ordered: ");
-            // https://stackoverflow.com/questions/43015098/how-to-iterate-through-a-map-in-java
-            // i mean you didnt say it had to based on input order
-            for (Map.Entry<String, Integer> pair: items.entrySet()) {
-                System.out.println(pair.getKey() + " x" + pair.getValue());
-                totalItems.merge(pair.getKey(), 1,  (oldVal, newVal) -> newVal + pair.getValue());
-            }
-
-            System.out.println("Y/N");
+            System.out.print("Do you still want to calculate menus? (Y/N) ");
         } while ("Y".equalsIgnoreCase(scan.nextLine())); // repeat if user says (Y)es
 
         System.out.println("==========================================");
         System.out.println("==========================================");
         System.out.println("Total menus calculated: " + totalMenus);
-        System.out.println("Total menus cost: " + totalMenusCost);
-        System.out.println("Total menus tip: " + totalMenusTip);
-        System.out.println("Total bills with tip " + totalMenusBill);
+        System.out.println("Total menus cost: $" + String.format("%.2f", totalMenusCost));
+        System.out.println("Total menus tip: $" + String.format("%.2f", totalMenusTip));
+        System.out.println("Total bills with tip: $" + String.format("%.2f", totalMenusBill));
 
         System.out.println("==========================================");
         System.out.println("Total items ordered: ");
