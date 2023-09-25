@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class TipCalculator {
     public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class TipCalculator {
         double totalMenusCost = 0;
         double totalMenusTip = 0;
         double totalMenusBill = 0;
-
+        Map<String, Integer> totalItems = new HashMap<>();
         do {
             double totalCost = 0;
             Map<String, Integer> items = new HashMap<>();
@@ -18,18 +20,20 @@ public class TipCalculator {
             System.out.print("What's the tip percentage? (0-100): ");
             int tipPercent = scan.nextInt();
             scan.nextLine();
-
-            double aCost = 0;
             String aItem;
             System.out.print("Enter a cost in dollars and cents (-1 to end): ");
-            aCost = scan.nextDouble();
+            double aCost = scan.nextDouble();
+            scan.nextLine();
             while (aCost != -1) {
+                System.out.print("Enter the item: ");
+                aItem = scan.nextLine();
+                totalCost += aCost;
+                https://www.programiz.com/java-programming/library/hashmap/merge
+                items.merge(aItem, 1,  (oldVal, newval) -> newval + 1);
+
                 System.out.print("Enter a cost in dollars and cents (-1 to end): ");
                 aCost = scan.nextDouble();
                 scan.nextLine();
-                aItem = scan.nextLine();
-                totalCost += aCost;
-
             }
 
             // cost is cost of food w/o tip
@@ -54,9 +58,18 @@ public class TipCalculator {
             totalMenusTip += tipAmount;
             totalMenusBill += totalBill;
 
+            https://stackoverflow.com/questions/43015098/how-to-iterate-through-a-map-in-java
+            for (Map.Entry<String, Integer> pair: items.entrySet()) {
+                System.out.println(pair.getKey() + " " + pair.getValue());
+                totalItems.merge(pair.getKey(), 1,  (oldVal, newVal) -> newVal + 1);
+            }
+
             System.out.println("Y/N");
         } while ("Y".equalsIgnoreCase(scan.nextLine())); // repeat if user says (Y)es
 
+        for (Map.Entry<String, Integer> pair: totalItems.entrySet()) {
+            System.out.println(pair.getKey() + " " + pair.getValue());
+        }
         System.out.println(totalMenus);
         System.out.println(totalMenusCost);
         System.out.println(totalMenusTip);
