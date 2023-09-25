@@ -1,8 +1,12 @@
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class TipCalculator {
+    // https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html
+    private static final DecimalFormat df = new DecimalFormat("$0.00"); // what variable naming convention do i use??????????????
+
     public static void main(String[] args) {
         // variables
         Scanner scan = new Scanner(System.in);
@@ -67,14 +71,13 @@ public class TipCalculator {
 
             // just printing out info for user
             System.out.println("==========================================");
-            // https://stackoverflow.com/questions/2538787/how-to-print-a-float-with-2-decimal-places-in-java
-            System.out.println("Total bill before tip: $" + String.format("%.2f", totalCost));
+            System.out.println("Total bill before tip: " + df.format(totalCost));
             System.out.println("Total percentage: " + tipPercent + "%");
-            System.out.println("Total tip: $" + String.format("%.2f", tipAmount));
-            System.out.println("Total bill with tip: $" + String.format("%.2f", totalBill));
-            System.out.println("Per person cost before tip: $" + String.format("%.2f", costPerPerson));
-            System.out.println("Tip per person: $" + String.format("%.2f", tipPerPerson));
-            System.out.println("Total cost per person: $" + String.format("%.2f", billPerPerson));
+            System.out.println("Total tip: " + df.format(tipAmount));
+            System.out.println("Total bill with tip: " + df.format(totalBill));
+            System.out.println("Per person cost before tip: " + df.format(costPerPerson));
+            System.out.println("Tip per person: " + df.format(tipPerPerson));
+            System.out.println("Total cost per person: " + df.format(billPerPerson));
 
             System.out.println("==========================================");
             System.out.println("Items ordered: ");
@@ -100,9 +103,9 @@ public class TipCalculator {
         System.out.println("==========================================");
         System.out.println("==========================================");
         System.out.println("Total menus calculated: " + totalMenus);
-        System.out.println("Total menus cost: $" + String.format("%.2f", totalMenusCost));
-        System.out.println("Total menus tip: $" + String.format("%.2f", totalMenusTip));
-        System.out.println("Total bills with tip: $" + String.format("%.2f", totalMenusBill));
+        System.out.println("Total menus cost: " + df.format(totalMenusCost));
+        System.out.println("Total menus tip: " + df.format(totalMenusTip));
+        System.out.println("Total bills with tip: " + df.format(totalMenusBill));
 
         // display total items
         System.out.println("==========================================");
