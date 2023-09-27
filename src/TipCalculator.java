@@ -33,16 +33,16 @@ public class TipCalculator {
             scan.nextLine();
 
             // start of asking for item loop
-            System.out.print("Enter a cost in dollars and cents (-1 to end): ");
-            double aCost = scan.nextDouble();
-            scan.nextLine();
+            System.out.print("Enter the item (\"end\" to end): ");
+            String aItem = scan.nextLine();
 
-            String aItem;
+            double aCost;
             int numItem;
-            while (aCost != -1) {  // if the user didn't just end the loop
+            while (!"end".equalsIgnoreCase(aItem)) {  // if the user didn't just end the loop
                 // more item info
-                System.out.print("Enter the item: ");
-                aItem = scan.nextLine();
+                System.out.print("Enter a cost in dollars and cents: ");
+                aCost = scan.nextDouble();
+                scan.nextLine();
                 System.out.print("How many? ");
                 numItem = scan.nextInt();
                 scan.nextLine();
@@ -56,9 +56,8 @@ public class TipCalculator {
 
 
                 // prompt to be checked by while loop expression
-                System.out.print("Enter a cost in dollars and cents (-1 to end): ");
-                aCost = scan.nextDouble();
-                scan.nextLine();
+                System.out.print("Enter the item (end to end): ");
+                aItem = scan.nextLine();
             }
 
             // cost is cost of food w/o tip
