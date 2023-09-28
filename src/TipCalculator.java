@@ -33,7 +33,8 @@ public class TipCalculator {
             scan.nextLine();
 
             // start of asking for item loop
-            System.out.print("Enter the item (\"end\" to end): ");
+            System.out.println();
+            System.out.print("Enter the item (\"end\" to end calculation): ");
             String aItem = scan.nextLine();
 
             double aCost;
@@ -56,7 +57,8 @@ public class TipCalculator {
 
 
                 // prompt to be checked by while loop expression
-                System.out.print("Enter the item (end to end): ");
+                System.out.println();
+                System.out.print("Enter the item (\"end\" to end calculation): ");
                 aItem = scan.nextLine();
             }
 
@@ -77,7 +79,6 @@ public class TipCalculator {
             System.out.println("Per person cost before tip: " + formatter.format(costPerPerson));
             System.out.println("Tip per person: " + formatter.format(tipPerPerson));
             System.out.println("Total cost per person: " + formatter.format(billPerPerson));
-
             System.out.println("==========================================");
             System.out.println("Items ordered: ");
             // https://stackoverflow.com/questions/43015098/how-to-iterate-through-a-map-in-java
@@ -95,17 +96,16 @@ public class TipCalculator {
             totalMenusBill += totalBill;
 
             System.out.println("==========================================");
-            System.out.print("Do you still want to calculate menus? (Y/N) ");
+            System.out.print("Do you want to calculate another menu? (Y/N) ");
         } while ("Y".equalsIgnoreCase(scan.nextLine())); // repeat if user says (Y)es
 
         // display total
         System.out.println("==========================================");
-        System.out.println("==========================================");
+        System.out.println();
         System.out.println("Total menus calculated: " + totalMenus);
         System.out.println("Total menus cost: " + formatter.format(totalMenusCost));
         System.out.println("Total menus tip: " + formatter.format(totalMenusTip));
         System.out.println("Total bills with tip: " + formatter.format(totalMenusBill));
-
         // display total items
         System.out.println("==========================================");
         System.out.println("Total items ordered: ");
