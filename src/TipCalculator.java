@@ -1,3 +1,4 @@
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -5,9 +6,10 @@ import java.util.Scanner;
 
 public class TipCalculator {
     // https://docs.oracle.com/javase/8/docs/api/java/text/DecimalFormat.html
-    private static final DecimalFormat formatter = new DecimalFormat("$0.00");
+    private static final DecimalFormat df = new DecimalFormat("$0.00");
 
     public static void main(String[] args) {
+        df.setRoundingMode(RoundingMode.HALF_UP); // round up
         // variables
         Scanner scan = new Scanner(System.in);
 
@@ -72,13 +74,13 @@ public class TipCalculator {
 
             // just printing out info for user
             System.out.println("==========================================");
-            System.out.println("Total bill before tip: " + formatter.format(totalCost));
+            System.out.println("Total bill before tip: " + df.format(totalCost));
             System.out.println("Total percentage: " + tipPercent + "%");
-            System.out.println("Total tip: " + formatter.format(tipAmount));
-            System.out.println("Total bill with tip: " + formatter.format(totalBill));
-            System.out.println("Per person cost before tip: " + formatter.format(costPerPerson));
-            System.out.println("Tip per person: " + formatter.format(tipPerPerson));
-            System.out.println("Total cost per person: " + formatter.format(billPerPerson));
+            System.out.println("Total tip: " + df.format(tipAmount));
+            System.out.println("Total bill with tip: " + df.format(totalBill));
+            System.out.println("Per person cost before tip: " + df.format(costPerPerson));
+            System.out.println("Tip per person: " + df.format(tipPerPerson));
+            System.out.println("Total cost per person: " + df.format(billPerPerson));
             System.out.println("==========================================");
             System.out.println("Items ordered: ");
             // https://stackoverflow.com/questions/43015098/how-to-iterate-through-a-map-in-java
@@ -103,9 +105,9 @@ public class TipCalculator {
         System.out.println("==========================================");
         System.out.println();
         System.out.println("Total menus calculated: " + totalMenus);
-        System.out.println("Total menus cost: " + formatter.format(totalMenusCost));
-        System.out.println("Total menus tip: " + formatter.format(totalMenusTip));
-        System.out.println("Total bills with tip: " + formatter.format(totalMenusBill));
+        System.out.println("Total menus cost: " + df.format(totalMenusCost));
+        System.out.println("Total menus tip: " + df.format(totalMenusTip));
+        System.out.println("Total bills with tip: " + df.format(totalMenusBill));
         // display total items
         System.out.println("==========================================");
         System.out.println("Total items ordered: ");
